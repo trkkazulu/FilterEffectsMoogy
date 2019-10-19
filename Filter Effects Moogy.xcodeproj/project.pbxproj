@@ -100,9 +100,9 @@
 				13ED3DE323568D460073FD2A /* bassClipCR.wav */,
 				C4EDA1031DA969CF008C1827 /* ViewController.swift */,
 				C4EDA1251DA99F65008C1827 /* FilterEffectsMoogy-BridgingHeader.h */,
+				C4EDA10A1DA969CF008C1827 /* LaunchScreen.storyboard */,
 				C4EDA1051DA969CF008C1827 /* Main.storyboard */,
 				C4EDA1081DA969CF008C1827 /* Assets.xcassets */,
-				C4EDA10A1DA969CF008C1827 /* LaunchScreen.storyboard */,
 				C4EDA10D1DA969CF008C1827 /* Info.plist */,
 			);
 			path = FilterEffects;
