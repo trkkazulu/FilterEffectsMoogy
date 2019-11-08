@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  FilterEffects
+// FilterEffects Moogy
 //
-//  Created by Aurelius Prochazka, revision history on Githbub.
-//  Copyright © 2018 AudioKit. All rights reserved.
+//  Created by Jair-Rohm Parker Wells, revision history on Githbub.
+//  Copyright © 2018 Ugly Plugs. All rights reserved.
 //
 
 import AudioKit
@@ -30,29 +30,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-    
-        
+
         //MARK: Create the AK player for testing
         
         
-        if let file = try? AKAudioFile(readFileName: "Bass1.wav") {
+        if let file = try? AKAudioFile(readFileName: "Bass2_short.wav") {
             player = AKPlayer(audioFile: file)
             player.completionHandler = { Swift.print("completion callback has been triggered!") }
-            
-            
-            
-            
+    
             
             //MARK: PROCESSES
             
-            filter = AKMoogLadder(player, cutoffFrequency: 1100.0, resonance: 0.5)
+            filter = AKMoogLadder(player, cutoffFrequency: 20000.0, resonance: 0.5)
             filterMixer = AKDryWetMixer(player, filter)
             filterMixer.balance = 0.5
             
             dist = AKDistortion(filter, delay: 0.0, decay: 0.0, delayMix: 0.0, decimation: 0.0, rounding: 0.0, decimationMix: 0.0, linearTerm: 1.0, squaredTerm: 1.0, cubicTerm: 1.0, polynomialMix: 1.0, ringModFreq1: 700.0, ringModFreq2: 350.0, ringModBalance: 0.5, ringModMix: 0.0, softClipGain: 0.0, finalMix: 1.0)
             
-            distMixer = AKDryWetMixer(filterMixer, dist)
+            distMixer = AKDryWetMixer(filter, dist)
             distMixer.balance = 0.5
             
             booster = AKBooster(distMixer)
@@ -68,7 +63,6 @@ class ViewController: UIViewController {
                 AKLog("AudioKit did not start!")
             }
             
-            Audiobus.start()
             player.isLooping = true
             player.buffering = .always
             player.play()
