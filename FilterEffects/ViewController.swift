@@ -31,26 +31,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        
-        
-        //MARK: Create the AVFoundation player for testing
-        
-        //        let path = Bundle.main.path(forResource: "bassClipCR.wav", ofType:nil)!
-        //        let url = URL(fileURLWithPath: path)
-        //
-        //        do {
-        //            player = try AVAudioPlayer(contentsOf: url)
-        //            player?.numberOfLoops = -1
-        //            player?.play()
-        //        } catch {
-        //            print("Couldn't load file") // couldn't load file :(
-        //      }
-        
+    
         
         //MARK: Create the AK player for testing
         
         
-        if let file = try? AKAudioFile(readFileName: "bassClipCR.wav") {
+        if let file = try? AKAudioFile(readFileName: "Bass1.wav") {
             player = AKPlayer(audioFile: file)
             player.completionHandler = { Swift.print("completion callback has been triggered!") }
             
