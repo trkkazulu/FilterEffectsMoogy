@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13D9CBFC2331183F00B0A99D /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFA2331183E00B0A99D /* AudioKit.framework */; };
-		13D9CBFD2331183F00B0A99D /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFB2331183E00B0A99D /* AudioKitUI.framework */; };
-		13ED3DE2235658250073FD2A /* Audiobus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ED3DE1235658250073FD2A /* Audiobus.swift */; };
-		13ED3DE423568D460073FD2A /* bassClipCR.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13ED3DE323568D460073FD2A /* bassClipCR.wav */; };
-		74BB81B03168E003B76DB7C9 /* Pods_FilterEffectsMoogy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4349C9A07827C8CB42794F8A /* Pods_FilterEffectsMoogy.framework */; };
+		133D17AB2376223000F75DDB /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFA2331183E00B0A99D /* AudioKit.framework */; };
+		133D17AC2376223000F75DDB /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFA2331183E00B0A99D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		133D17AD2376223000F75DDB /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFB2331183E00B0A99D /* AudioKitUI.framework */; };
+		133D17AE2376223000F75DDB /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D9CBFB2331183E00B0A99D /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13F7B75F237737EA00464481 /* bassClipCR.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13F7B75E237737EA00464481 /* bassClipCR.wav */; };
+		13F7B7612377390600464481 /* OLBass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13F7B7602377390600464481 /* OLBass.wav */; };
 		C4EDA1021DA969CF008C1827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EDA1011DA969CF008C1827 /* AppDelegate.swift */; };
 		C4EDA1041DA969CF008C1827 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EDA1031DA969CF008C1827 /* ViewController.swift */; };
 		C4EDA1071DA969CF008C1827 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4EDA1051DA969CF008C1827 /* Main.storyboard */; };
@@ -21,12 +22,26 @@
 		C4EDA12B1DA9A3D7008C1827 /* Audiobus.txt in Resources */ = {isa = PBXBuildFile; fileRef = C4EDA12A1DA9A3D7008C1827 /* Audiobus.txt */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		133D17AF2376223000F75DDB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				133D17AE2376223000F75DDB /* AudioKitUI.framework in Embed Frameworks */,
+				133D17AC2376223000F75DDB /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		13D9CBFA2331183E00B0A99D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		13D9CBFB2331183E00B0A99D /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
-		13ED3DE1235658250073FD2A /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audiobus.swift; sourceTree = "<group>"; };
-		13ED3DE323568D460073FD2A /* bassClipCR.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bassClipCR.wav; sourceTree = "<group>"; };
-		4349C9A07827C8CB42794F8A /* Pods_FilterEffectsMoogy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FilterEffectsMoogy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F7B75E237737EA00464481 /* bassClipCR.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bassClipCR.wav; sourceTree = "<group>"; };
+		13F7B7602377390600464481 /* OLBass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OLBass.wav; sourceTree = SOURCE_ROOT; };
 		7C1BBAFB9608E3805B0F42AF /* Pods-FilterEffectsMoogy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterEffectsMoogy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilterEffectsMoogy/Pods-FilterEffectsMoogy.debug.xcconfig"; sourceTree = "<group>"; };
 		94C8BA53CBA643F31FDEC3F7 /* Pods-FilterEffects.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterEffects.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilterEffects/Pods-FilterEffects.debug.xcconfig"; sourceTree = "<group>"; };
 		C468A6F22023054F004B759B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -50,10 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13D9CBFC2331183F00B0A99D /* AudioKit.framework in Frameworks */,
-				13D9CBFD2331183F00B0A99D /* AudioKitUI.framework in Frameworks */,
+				133D17AD2376223000F75DDB /* AudioKitUI.framework in Frameworks */,
+				133D17AB2376223000F75DDB /* AudioKit.framework in Frameworks */,
 				C4EDA1231DA96F26008C1827 /* AudioToolbox.framework in Frameworks */,
-				74BB81B03168E003B76DB7C9 /* Pods_FilterEffectsMoogy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +110,9 @@
 				C4EDA12A1DA9A3D7008C1827 /* Audiobus.txt */,
 				C4EDA1201DA96F26008C1827 /* FilterEffects.entitlements */,
 				C4EDA1011DA969CF008C1827 /* AppDelegate.swift */,
-				13ED3DE1235658250073FD2A /* Audiobus.swift */,
-				13ED3DE323568D460073FD2A /* bassClipCR.wav */,
 				C4EDA1031DA969CF008C1827 /* ViewController.swift */,
+				13F7B75E237737EA00464481 /* bassClipCR.wav */,
+				13F7B7602377390600464481 /* OLBass.wav */,
 				C4EDA1251DA99F65008C1827 /* FilterEffectsMoogy-BridgingHeader.h */,
 				C4EDA1051DA969CF008C1827 /* Main.storyboard */,
 				C4EDA1081DA969CF008C1827 /* Assets.xcassets */,
@@ -114,7 +128,6 @@
 				13D9CBFA2331183E00B0A99D /* AudioKit.framework */,
 				13D9CBFB2331183E00B0A99D /* AudioKitUI.framework */,
 				C4EDA1221DA96F26008C1827 /* AudioToolbox.framework */,
-				4349C9A07827C8CB42794F8A /* Pods_FilterEffectsMoogy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,6 +143,7 @@
 				C4EDA0FA1DA969CF008C1827 /* Sources */,
 				C4EDA0FB1DA969CF008C1827 /* Frameworks */,
 				C4EDA0FC1DA969CF008C1827 /* Resources */,
+				133D17AF2376223000F75DDB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,8 +205,9 @@
 			files = (
 				C4EDA10C1DA969CF008C1827 /* LaunchScreen.storyboard in Resources */,
 				C4EDA1091DA969CF008C1827 /* Assets.xcassets in Resources */,
-				13ED3DE423568D460073FD2A /* bassClipCR.wav in Resources */,
+				13F7B75F237737EA00464481 /* bassClipCR.wav in Resources */,
 				C4EDA12B1DA9A3D7008C1827 /* Audiobus.txt in Resources */,
+				13F7B7612377390600464481 /* OLBass.wav in Resources */,
 				C4EDA1071DA969CF008C1827 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +241,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4EDA1041DA969CF008C1827 /* ViewController.swift in Sources */,
-				13ED3DE2235658250073FD2A /* Audiobus.swift in Sources */,
 				C4EDA1021DA969CF008C1827 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
