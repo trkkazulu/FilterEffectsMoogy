@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         filterMixer.balance = 1.0
 
         
-        let dist = AKClipper(filterMixer, limit: 0.5)
+        let dist = AKClipper(filterMixer, limit: 0.8)
 //        dist.linearTerm = 0.5
 //        dist.squaredTerm = 1.00
 //        dist.cubicTerm = 1.00
