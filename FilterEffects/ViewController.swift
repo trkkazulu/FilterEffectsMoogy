@@ -5,7 +5,7 @@
 /*
  
  It appears that the problem has something to do with the distortion code. So i've fixed it by rewriting the dist. This works
- now. Add the envelope filter. 
+ now. Add the envelope filter. EnvFltr added. I also learned that .AIF files don't work in Xcode.
  
  
  */
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     var reverb: AKCostelloReverb!
     var reverbMixer: AKDryWetMixer!
     var booster: AKBooster!
-    var dist: AKDistortion!
+   // var dist: AKDistortion!
     var distMixer: AKDryWetMixer!
     var filter: AKMoogLadder!
     var filterMixer: AKDryWetMixer!
@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     var player: AKPlayer!
     var lpFilter: AKLowPassFilter!
     var envel: AKAmplitudeEnvelope!
+    var octv: AKPitchShifter!
     
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
         
         //MARK: Create the player for testing
         
-        if let file = try? AKAudioFile(readFileName: "OLBass.aif") {
+        if let file = try? AKAudioFile(readFileName: "OLBass.wav") {
             
             player = AKPlayer(audioFile: file)
             player.completionHandler = { Swift.print("completion callback has been triggered!")
@@ -52,28 +53,40 @@ class ViewController: UIViewController {
         
         //MARK: PROCESSES
         
+        octv = AKPitchShifter(player, shift: -12.00, windowSize: 1024, crossfade: 512)
+        
+        let filtOct = AKLowPassFilter(octv, cutoffFrequency: 98.0, resonance: 0.5)
+        let squash = AKCompressor(filtOct, threshold: -10.0, headRoom: 0.5, attackDuration: 0.2, releaseDuration: 0.5, masterGain: 3.0)
+        
         filter = AKMoogLadder(player, cutoffFrequency: 650.00, resonance: 0.5)
         
-        envel = AKAmplitudeEnvelope(filter, attackDuration: 0.2, decayDuration: 0.06, sustainLevel: 1.0, releaseDuration: 0.5)
+        envel = AKAmplitudeEnvelope(filter, attackDuration: 0.3, decayDuration: 0.2, sustainLevel: 0.99, releaseDuration: 0.3)
+        
+        //let wha = AKAutoWah(filter, wah: 2.0, mix: 1.0, amplitude: 1.0)
+        
         envel.start() // envelope must be started or there won't be any sound
 
-        //filterMixer = AKDryWetMixer(player, filter)
+        filterMixer = AKDryWetMixer(squash, envel)
+        
+        filterMixer.balance = 1.0
 
         
-        dist = AKDistortion(envel)
-        dist.linearTerm = 1.00
-        dist.squaredTerm = 1.00
-        dist.cubicTerm = 1.00
-        dist.softClipGain = 0.00
+        let dist = AKClipper(filterMixer, limit: 0.5)
+//        dist.linearTerm = 0.5
+//        dist.squaredTerm = 1.00
+//        dist.cubicTerm = 1.00
+//        dist.softClipGain = 1.00
         
-        lpFilter = AKLowPassFilter(dist, cutoffFrequency: 788.23, resonance: 0.5)
+        
+        lpFilter = AKLowPassFilter(dist, cutoffFrequency: 650.00, resonance: 0.5)
         lpFilter.start()
         
-        distMixer = AKDryWetMixer(envel, lpFilter)
+        distMixer = AKDryWetMixer(filterMixer, lpFilter)
         
         distMixer.balance = 0.5
         
-        booster = AKBooster(envel)
+        booster = AKBooster(distMixer)
+        booster.start()
         
         
         booster.gain = 0.0
@@ -118,23 +131,31 @@ class ViewController: UIViewController {
             format: "%0.2f") { sliderValue in
                 self.filter.resonance = sliderValue
         })
-
-//        stackView.addArrangedSubview(AKSlider(
-//            property: "Filter Mix",
-//            value: self.filterMixer.balance,
-//            range: 0 ... 1.0,
-//            format: "%0.2f") { sliderValue in
-//                self.filterMixer.balance = sliderValue
-//        })
         
+//        stackView.addArrangedSubview(AKSlider(
+//                   property: "Octave Mix",
+//                   value: self.octv.crossfade,
+//                   range: 0 ... 1.0,
+//                   format: "%0.2f") { sliderValue in
+//                    self.octv.crossfade = sliderValue
+//               })
+
         stackView.addArrangedSubview(AKSlider(
-            property: "Distortion",
-            value: self.dist.softClipGain,
-            range: 0 ... 1,
+            property: "Filter Mix",
+            value: self.filterMixer.balance,
+            range: 0 ... 0.99,
             format: "%0.2f") { sliderValue in
-                self.dist.softClipGain = sliderValue
+                self.filterMixer.balance = sliderValue
         })
         
+//        stackView.addArrangedSubview(AKSlider(
+//            property: "Distortion",
+//            value: self.dist.decimation,
+//            range: 0 ... 1,
+//            format: "%0.2f") { sliderValue in
+//                self.dist.decimation = sliderValue
+//        })
+//
         stackView.addArrangedSubview(AKSlider(
             property: "Dist Mix",
             value: self.distMixer.balance,
@@ -146,7 +167,7 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(AKSlider(
             property: "Output Volume",
             value: self.booster.gain,
-            range: 0 ... 3,
+            range: 0 ... 10,
             format: "%0.2f") { sliderValue in
                 self.booster.gain = sliderValue
         })
